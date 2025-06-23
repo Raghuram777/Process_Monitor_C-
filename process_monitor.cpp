@@ -5,7 +5,6 @@
 int main() {
     HANDLE hProcessSnap;
     PROCESSENTRY32 pe32;
-    int i=0;
 
     // Take a snapshot of all processes in the system
     hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -29,8 +28,7 @@ int main() {
 
     do {
         std::wcout << pe32.th32ProcessID << "\t\t" << pe32.szExeFile << std::endl;
-        i++;
-    } while (Process32Next(hProcessSnap, &pe32) && i<10);
+    } while (Process32Next(hProcessSnap, &pe32));
 
     CloseHandle(hProcessSnap);
     return 0;
